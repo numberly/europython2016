@@ -1,11 +1,11 @@
 import {Component} from '@angular/core';
 import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from '@angular/router-deprecated';
 
-import {PlayComponent}       from './play';
-import {NameComponent}       from './name';
-import {CountryComponent}    from './country';
-import {CountdownComponent}  from './countdown';
-import {QuestionComponent}   from './question';
+import {PlayComponent}       from './play/play.component';
+import {NameComponent}       from './name/name.component';
+import {CountryComponent}    from './country/country.component';
+import {CountdownComponent}  from './countdown/countdown.component';
+import {QuestionComponent}   from './question/question.component';
 
 @Component({
   selector: 'quizz-app',
