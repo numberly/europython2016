@@ -16,6 +16,7 @@
     "tests"
   ],
   "dependencies": {
-    "flag-icon-css": "^2.3.1"
+    "flag-icon-css": "^2.3.1",
+    "bootstrap": "^3.3.6"
   }
 }
