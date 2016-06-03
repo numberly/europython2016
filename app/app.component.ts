@@ -3,7 +3,7 @@ import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from '@angular/router-
 
 import {PlayComponent}       from './play/play.component';
 import {NameComponent}       from './name/name.component';
-import {EmailComponent}       from './email/email.component';
+import {EmailComponent}      from './email/email.component';
 
 import {CountryComponent}    from './country/country.component';
 import {CountdownComponent}  from './countdown/countdown.component';

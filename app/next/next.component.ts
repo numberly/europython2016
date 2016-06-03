@@ -16,7 +16,6 @@ export class NextComponent implements OnInit {
     this.router.navigate(link);
   }
 
-
   ngOnInit() {
   }
 }

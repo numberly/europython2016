@@ -15,9 +15,6 @@ export class NextComponent implements OnInit {
   }
 
   gotoNext() {
-    /* Retrieve the current route name
-    ***
-    */
     let link = ['Flag'];
     this.router.navigate(link);
   }
