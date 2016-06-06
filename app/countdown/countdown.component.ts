@@ -32,7 +32,7 @@ export class CountdownComponent implements OnInit {
   	this.go=true;
   	setTimeout(function() {
   		that.goToQuestion();
-  	},3000);
+  	},500);
   }
 
   goToQuestion() {
