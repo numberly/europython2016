@@ -12,7 +12,7 @@ export class CountdownComponent implements OnInit {
   go: boolean;
 
   constructor(private router: Router) {
-    var that = this;
+    this.countdown = 3;
   }
 
   ngOnInit() {
@@ -28,15 +28,11 @@ export class CountdownComponent implements OnInit {
   }
 
   showPicture() {
-    var that = this;
     this.go = true;
-    setTimeout(function() {
-      that.goToQuestion();
+    setTimeout(() => {
+    let link = ['/question'];
+    this.router.navigate(link);
     }, 500);
   }
 
-  goToQuestion() {
-    let link = ['Question'];
-    this.router.navigate(link);
-  }
 }
