@@ -1,0 +1,14 @@
+.font {
+	font-size: 200;
+}
+
+.picture {
+	position: relative;
+}
+
+.go {
+	position: absolute; 
+	top: 250px;
+	left: 300px;
+	color: #FFF;
+}
