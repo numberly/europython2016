@@ -7,36 +7,36 @@ import {Router}            from '@angular/router-deprecated';
   styleUrls: ['app/countdown/countdown.component.css']
 })
 export class CountdownComponent implements OnInit {
-  countdown = 5;
-  private interval=null;
-  go = false;
+  countdown: number;
+  interval: NodeJS.Timer;
+  go: boolean;
 
   constructor(private router: Router) {
-  	var that=this;
-  	this.interval=setInterval(function() {that.decCountDown();}, 1000);
+    var that = this;
   }
 
   ngOnInit() {
+    this.interval = setInterval(() => { this.decCountDown(); }, 1000);
   }
 
   decCountDown() {
-  	this.countdown--;
-  	if(this.countdown==0) {
-  		clearInterval(this.interval);
-  		this.showPicture();
-  	}  	
+    this.countdown--;
+    if (this.countdown == 0) {
+      clearInterval(this.interval);
+      this.showPicture();
+    }
   }
 
   showPicture() {
-  	var that=this;
-  	this.go=true;
-  	setTimeout(function() {
-  		that.goToQuestion();
-  	},500);
+    var that = this;
+    this.go = true;
+    setTimeout(function() {
+      that.goToQuestion();
+    }, 500);
   }
 
   goToQuestion() {
-  	let link = ['Question'];
+    let link = ['Question'];
     this.router.navigate(link);
   }
 }
