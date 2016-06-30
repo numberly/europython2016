@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Router}            from '@angular/router-deprecated';
+import {Router}            from '@angular/router';
 import {NextComponent}     from './../next/next.component';
 
 @Component({

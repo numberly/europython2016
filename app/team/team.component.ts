@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {}            from '@angular/router-deprecated';
+import {}            from '@angular/router';
 
 @Component({
   selector: 'quizz-country',

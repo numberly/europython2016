@@ -1,14 +1,24 @@
-import {provide}        from '@angular/core';
-import {XHRBackend}     from '@angular/http';
-// The usual bootstrapping imports
-import {bootstrap}      from '@angular/platform-browser-dynamic';
-import {HTTP_PROVIDERS} from '@angular/http';
+import {bootstrap}           from '@angular/platform-browser-dynamic';
+import {provideRouter}       from '@angular/router';
 
-import {AppComponent}   from './app.component';
+import {PlayComponent}       from './play/play.component';
+import {NameComponent}       from './name/name.component';
+import {EmailComponent}      from './email/email.component';
+import {TeamComponent}       from './team/team.component';
+import {CountryComponent}    from './country/country.component';
+import {CountdownComponent}  from './countdown/countdown.component';
+import {QuestionComponent}   from './question/question.component';
+import {AppComponent}        from './app.component';
 
-/*
-bootstrap(AppComponent, [ HTTP_PROVIDERS ]);
- */
-bootstrap(AppComponent, [
-    HTTP_PROVIDERS,
-]);
+var routes = [
+    {path: '', component: PlayComponent},
+    {path: 'play', component: PlayComponent},
+    {path: 'name', component: NameComponent},
+    {path: 'email', component: EmailComponent},
+    {path: 'country', component: CountryComponent},
+    {path: 'countdown', component: CountdownComponent},
+    {path: 'question', component: QuestionComponent}
+];
+
+bootstrap(AppComponent, [provideRouter(routes)])
+    .catch(err => console.error(err));
