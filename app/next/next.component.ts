@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {Router}            from '@angular/router-deprecated';
 
 @Component({
@@ -8,11 +8,12 @@ import {Router}            from '@angular/router-deprecated';
 })
 export class NextComponent implements OnInit {
 
-  constructor(private router: Router) {
-  }
+  constructor(private router: Router) { }
+
+  @Input('next') next: string;
 
   goToNext() {
-    let link = ['Email'];
+    let link = [this.next];
     this.router.navigate(link);
   }
 
