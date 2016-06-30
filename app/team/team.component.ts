@@ -63,4 +63,9 @@ export class TeamComponent {
 
   constructor() {
   }
+
+  createUser(team) {
+    console.log(team);
+    console.log('createUser');
+  }
 }
