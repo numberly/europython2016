@@ -15,6 +15,7 @@ var routes = [
     {path: 'play', component: PlayComponent},
     {path: 'name', component: NameComponent},
     {path: 'email', component: EmailComponent},
+    {path: 'team', component: TeamComponent},
     {path: 'country', component: CountryComponent},
     {path: 'countdown', component: CountdownComponent},
     {path: 'question', component: QuestionComponent}
