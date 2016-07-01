@@ -16,7 +16,10 @@ export class CountdownComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.interval = setInterval(() => { this.decCountDown(); }, 1000);
+    this.interval = setInterval(() => {
+        this.decCountDown();
+        console.log('interval');
+    }, 1000);
   }
 
   decCountDown() {

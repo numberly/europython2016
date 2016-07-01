@@ -1,9 +1,10 @@
 <div class="container">
   <div class="row">
-
+    {{user | json}}
     <input type="email"
         placeholder="Please enter your email to continue"
-        class="form-control email-input">
+        class="form-control email-input"
+        [(ngModel)]="user.email">
 
     <quizz-next next="/team"></quizz-next>
   </div>
