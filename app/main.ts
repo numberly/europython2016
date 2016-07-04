@@ -13,14 +13,14 @@ import {AppComponent} from './app.component';
 import {UserService} from './user/user.service'
 
 var routes = [
-    {path: '', component: PlayComponent},
-    {path: 'play', component: PlayComponent},
-    {path: 'name', component: NameComponent},
-    {path: 'email', component: EmailComponent},
-    {path: 'team', component: TeamComponent},
-    {path: 'country', component: CountryComponent},
-    {path: 'countdown', component: CountdownComponent},
-    {path: 'question', component: QuestionComponent}
+    { path: '', component: PlayComponent },
+    { path: 'play', component: PlayComponent },
+    { path: 'name', component: NameComponent },
+    { path: 'email', component: EmailComponent },
+    { path: 'team', component: TeamComponent },
+    { path: 'country', component: CountryComponent },
+    { path: 'countdown', component: CountdownComponent },
+    { path: 'question', component: QuestionComponent }
 ];
 
 bootstrap(AppComponent, [
