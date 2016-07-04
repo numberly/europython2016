@@ -1,8 +1,8 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {Router} from '@angular/router';
 import {NextComponent} from './../next/next.component';
-import {UserService} from './../user/user.service';
 import {User} from './../user/user';
+import {UserService} from './../user/user.service';
 
 @Component({
   selector: 'quizz-email',
@@ -12,14 +12,13 @@ import {User} from './../user/user';
   providers: [User]
 })
 export class EmailComponent implements OnInit {
-
   user : User;
 
   constructor(private router: Router,
     private userService: UserService) {
   }
 
-  ngOnInit() {
+  ngOnInit() {q
     if (this.userService.user === undefined) {
         // we should go back to /name page!
         // but for now we will create a new User!

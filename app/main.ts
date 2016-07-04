@@ -10,6 +10,7 @@ import {CountryComponent} from './country/country.component';
 import {CountdownComponent} from './countdown/countdown.component';
 import {QuestionComponent} from './question/question.component';
 import {AppComponent} from './app.component';
+import {UserService} from './user/user.service'
 
 var routes = [
     {path: '', component: PlayComponent},
@@ -24,5 +25,6 @@ var routes = [
 
 bootstrap(AppComponent, [
     provideRouter(routes),
-    HTTP_PROVIDERS
+    HTTP_PROVIDERS,
+    UserService
 ]).catch(err => console.error(err));
