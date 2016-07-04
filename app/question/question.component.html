@@ -1,1 +1,25 @@
-Question
+<div class="container">
+  <div class="row">
+    <div class="col col-lg-12">
+      Question numero: {{counter}}
+    </div>
+  </div>
+  <div class="row"
+      *ngIf="question">
+    <div class="col col-lg-12">
+      <h1 style="text-align: center;">{{question.Text}}</h1>
+    </div>
+  </div>
+  <div *ngIf="question">
+    <div class="row">
+      <div class="col-md-12 btn
+                  btn-primary
+                  btn-custom-question"
+          *ngFor="let answer of question.Answers; "
+          style=""
+          (click)="selectAnswer(answer)">
+        {{answer}}
+      </div>
+    </div>
+  </div>
+</div>

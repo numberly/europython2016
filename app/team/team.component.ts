@@ -27,7 +27,7 @@ export class TeamComponent implements OnInit {
     }
 
     createUser(team: { name: string, icon: string }) {
-        this.userService.user.country = team.name;
+        this.userService.user.team = team.name;
         // take screenshot :)
         // go to countdown
         console.log(this.userService.user);
@@ -42,7 +42,6 @@ export class TeamComponent implements OnInit {
 
     private handleError(error: any) {
         console.error('An error occurred', error);
-        alert('Noob!!, ' + error.message || error);
         return Promise.reject(error.message || error);
     }
 }

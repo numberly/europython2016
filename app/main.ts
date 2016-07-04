@@ -12,6 +12,10 @@ import {QuestionComponent} from './question/question.component';
 import {AppComponent} from './app.component';
 import {UserService} from './user/user.service'
 
+import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/catch';
+
+
 var routes = [
     { path: '', component: PlayComponent },
     { path: 'play', component: PlayComponent },

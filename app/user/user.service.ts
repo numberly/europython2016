@@ -23,11 +23,6 @@ export class UserService {
             .catch(this.handleError);
     }
 
-    // getHero(id: number) {
-    //   return this.getHeroes()
-    //              .then(heroes => heroes.filter(hero => hero.id === id)[0]);
-    // }
-
     save(user: User): Promise<User> {
         if (user._id) {
             return this.put(user);
