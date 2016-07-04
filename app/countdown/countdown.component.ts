@@ -12,7 +12,7 @@ export class CountdownComponent implements OnInit {
     go: boolean;
 
     constructor(private router: Router) {
-        this.countdown = 3;
+        this.countdown = 5;
     }
 
     ngOnInit() {
