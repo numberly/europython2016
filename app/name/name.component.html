@@ -1,9 +1,14 @@
 <div class="container">
   <div class="row">
-    <input type="text"
-        placeholder="Please enter your name to continue"
-        class="form-control name-input"
-        [(ngModel)]="userService.user && userService.user.name">
-    <quizz-next next="/email"></quizz-next>
+    <div class="banner col-xs-12">
+      <img src="http://decibelsprod.com/wp-content/uploads/2014/03/Decibels-Productions_Artiste_ane-trotro-1.jpg" class="background" />
+      <div class="absolute">
+        <input type="text"
+            placeholder="What's your name babe?"
+            class="form-control name-input"
+            [(ngModel)]="userService.user && userService.user.name">
+        <quizz-next class="next" next="/email"></quizz-next>
+      </div>
+    </div>
   </div>
 </div>
