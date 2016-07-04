@@ -1,21 +1,29 @@
 .banner {
-    width: 100%;
-    min-height: 215px;
-    background: url("/app/play/detailbg.jpg") no-repeat left top;
-    background-size: cover;
-    text-align: right;
-    cursor: pointer;
-}
-.center {
-    width: 300px;
-    position: absolute;
-    left: 50%;
-    top: 50px;
-    margin-left: -251px;
-    /* margin-top: -275px; */
+    margin-top: 30px;
     color: #ec6293;
-    font-size: 41px;
+    font-weight: bolder;
+    font-size: 25px;
+    padding-top: 100px;
+    text-align: right;
 }
-body {
-    cursor: pointer;
+.banner img{
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  filter: opacity(0.5);
+
+}
+.banner .title{
+  position: absolute;
+  right: 10px;
+  top: 110px;
+}
+.play-btn {
+    background-color: #ec6293;
+    color: white;
+    font-size: 50px;
+    position: absolute;
+    bottom: 3px;
+    right: 10px;
 }
