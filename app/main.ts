@@ -1,6 +1,7 @@
 import {bootstrap} from '@angular/platform-browser-dynamic';
 import {provideRouter} from '@angular/router';
 import {HTTP_PROVIDERS} from '@angular/http';
+import {disableDeprecatedForms, provideForms} from '@angular/forms';
 
 import {PlayComponent} from './play/play.component';
 import {NameComponent} from './name/name.component';
@@ -27,8 +28,6 @@ var routes = [
     { path: 'question', component: QuestionComponent }
 ];
 
-bootstrap(AppComponent, [
-    provideRouter(routes),
-    HTTP_PROVIDERS,
-    UserService
-]).catch(err => console.error(err));
+bootstrap(AppComponent, [provideRouter(routes), HTTP_PROVIDERS, UserService,
+                         disableDeprecatedForms(), provideForms()])
+    .catch(err => console.error(err));
