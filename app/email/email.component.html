@@ -1,10 +1,14 @@
 <div class="container">
   <div class="row">
-    <input type="email"
-        placeholder="Please enter your email to continue"
-        class="form-control email-input"
-        [(ngModel)]="userService.user.email">
-
-    <quizz-next next="/team"></quizz-next>
+    <div class="banner col-xs-12">
+      <img src="http://decibelsprod.com/wp-content/uploads/2014/03/Decibels-Productions_Artiste_ane-trotro-1.jpg" class="background" />
+      <div class="absolute">
+        <input type="email"
+            placeholder="What's your email address sweetie?"
+            class="form-control email-input"
+            [(ngModel)]="userService.user.email">
+        <quizz-next class="next" next="/team"></quizz-next>
+      </div>
+    </div>
   </div>
 </div>
