@@ -31,8 +31,18 @@ export class TeamComponent implements OnInit {
         // take screenshot :)
         // go to countdown
         console.log(this.userService.user);
-        this.userService.save(this.userService.user);
-        let link = ['/countdown'];
-        //   this.router.navigate(link);
+        this.userService.save(this.userService.user)
+            .then(function(user) {
+                console.log('User: ', user);
+                let link = ['/countdown'];
+                this.router.navigate(link);
+            })
+            .catch(this.handleError);
+    }
+
+    private handleError(error: any) {
+        console.error('An error occurred', error);
+        alert('Noob!!, ' + error.message || error);
+        return Promise.reject(error.message || error);
     }
 }
