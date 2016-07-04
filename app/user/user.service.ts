@@ -13,6 +13,7 @@ export class UserService {
   user : User;
 
   constructor(private http: Http) {
+    this.user = new User();
   }
 
   getUsers(): Promise<User[]> {

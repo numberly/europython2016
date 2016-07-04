@@ -1,35 +1,22 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {Router} from '@angular/router';
 import {NextComponent} from './../next/next.component';
-import {User} from './../user/user';
 import {UserService} from './../user/user.service';
 
 @Component({
   selector: 'quizz-email',
   templateUrl: 'app/email/email.component.html',
   styleUrls: ['app/email/email.component.css'],
-  directives: [NextComponent],
-  providers: [User]
+  directives: [NextComponent]
 })
 export class EmailComponent implements OnInit {
-  user : User;
 
-  constructor(private router: Router,
-    private userService: UserService) {
+  constructor(private router: Router, private userService: UserService) {
   }
 
-  ngOnInit() {q
-    if (this.userService.user === undefined) {
-        // we should go back to /name page!
-        // but for now we will create a new User!
-        this.user = new User();
-    } else {
-        this.user = this.userService.user;
+  ngOnInit() {
+    if (this.userService.user.name === undefined) {
+        this.router.navigate(['/name']);
     }
-  }
-
-  ngOnDestroy() {
-    // save current user to service to retrieve in next page!
-    this.userService.user = this.user;
   }
 }
