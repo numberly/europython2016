@@ -10,8 +10,9 @@ import {TeamComponent} from './team/team.component';
 import {CountryComponent} from './country/country.component';
 import {CountdownComponent} from './countdown/countdown.component';
 import {QuestionComponent} from './question/question.component';
+import {ResultComponent} from './result/result.component';
 import {AppComponent} from './app.component';
-import {UserService} from './user/user.service'
+import {UserService} from './user/user.service';
 
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/catch';
@@ -25,7 +26,8 @@ var routes = [
     { path: 'team', component: TeamComponent },
     { path: 'country', component: CountryComponent },
     { path: 'countdown', component: CountdownComponent },
-    { path: 'question', component: QuestionComponent }
+    { path: 'question', component: QuestionComponent },
+    { path: 'result', component: ResultComponent }
 ];
 
 bootstrap(AppComponent, [provideRouter(routes), HTTP_PROVIDERS, UserService,
