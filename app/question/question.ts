@@ -1,12 +1,11 @@
 export class Question {
-    ID: number;
-    Answers: string[];
-    AnserIndex: number;
+    id: number;
+    answers: string[];
+    answer_index: number;
+    text: string;
 }
-// 
-// [{
-//     "ID": 123, "Text": "qui est eddy malou?",
-//     "Answers":
-//        ["la verite", "le premier savant du congo", "un consommateur Ovalium", "un dev 1M"],
-//     "AnswerIndex": 1
-// }]
+
+export class Response {
+   answer_index: number;
+   id_user: string;
+}
