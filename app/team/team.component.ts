@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {CORE_DIRECTIVES} from '@angular/common';
-import {}            from '@angular/router';
-import {NextComponent}     from './../next/next.component';
+import {} from '@angular/router';
+import {NextComponent} from './../next/next.component';
 @Component({
   selector: 'quizz-team',
   templateUrl: 'app/team/team.component.html',

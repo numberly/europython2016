@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {Router}            from '@angular/router';
-import {NextComponent}     from './../next/next.component';
+import {Router} from '@angular/router';
+import {NextComponent} from './../next/next.component';
 @Component({
   selector: 'quizz-play',
   templateUrl: 'app/play/play.component.html',

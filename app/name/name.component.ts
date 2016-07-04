@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Router}            from '@angular/router';
-import {NextComponent}     from './../next/next.component';
+import {Router} from '@angular/router';
+import {NextComponent} from './../next/next.component';
 
 @Component({
   selector: 'quizz-name',
