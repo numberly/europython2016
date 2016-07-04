@@ -3,6 +3,7 @@ import {CORE_DIRECTIVES} from '@angular/common';
 
 import {NextComponent} from './../next/next.component';
 import {UserService} from './../user/user.service';
+import { User } from './../user/user';
 import {Router} from '@angular/router';
 
 import { teams }  from './team.constant';
@@ -30,18 +31,13 @@ export class TeamComponent implements OnInit {
         this.userService.user.team = team.name;
         // take screenshot :)
         // go to countdown
-        console.log(this.userService.user);
         this.userService.save(this.userService.user)
-            .then(function(user) {
-                console.log('User: ', user);
-                let link = ['/countdown'];
-                this.router.navigate(link);
-            })
-            .catch(this.handleError);
+            .subscribe(user => this.handleUserCreation(user));
     }
 
-    private handleError(error: any) {
-        console.error('An error occurred', error);
-        return Promise.reject(error.message || error);
+    handleUserCreation(user: User) {
+        console.log('User: ', user);
+        let link = ['/countdown'];
+        this.router.navigate(link);
     }
 }
