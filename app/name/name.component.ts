@@ -11,7 +11,7 @@ import {UserService} from './../user/user.service';
     directives: [REACTIVE_FORM_DIRECTIVES]
 })
 export class NameComponent {
-    name: FormControl = new FormControl("", Validators.required);
+    name: FormControl = new FormControl("", [Validators.required]);
 
     constructor(private router: Router, private userService: UserService) {
     }

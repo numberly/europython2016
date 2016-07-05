@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {REACTIVE_FORM_DIRECTIVES, FormControl, Validators} from '@angular/forms';
 
 import {UserService} from './../user/user.service';
+import {validateEmail} from '../shared/validators';
 
 @Component({
     selector: 'quizz-email',
@@ -11,7 +12,7 @@ import {UserService} from './../user/user.service';
     directives: [REACTIVE_FORM_DIRECTIVES]
 })
 export class EmailComponent implements OnInit {
-    email: FormControl = new FormControl("", Validators.required);
+    email: FormControl = new FormControl("", [Validators.required, validateEmail]);
 
     constructor(private router: Router, private userService: UserService) {
     }
