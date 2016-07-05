@@ -1,0 +1,10 @@
+.next {
+    background-color: #ec6293!important;
+    color: white;
+    font-size: 30px;
+    margin-top: 20px;
+}
+
+.next:disabled {
+    background-color: #aaa!important;
+}
