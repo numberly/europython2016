@@ -6,8 +6,10 @@
         <input type="email" required
             placeholder="What's your email address sweetie?"
             class="form-control email-input"
-            [(ngModel)]="userService.user.email">
-        <quizz-next class="next" next="/team"></quizz-next>
+            [(ngModel)]="userService.user.email"
+            [formControl]="email">
+        <button type="submit" class="next"
+                [disabled]="!email.valid" (click)="submit()">Next!</button>
       </div>
     </div>
   </div>

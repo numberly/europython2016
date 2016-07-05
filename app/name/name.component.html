@@ -6,8 +6,10 @@
         <input type="text" required
             placeholder="What's your name babe?"
             class="form-control name-input"
-            [(ngModel)]="userService.user && userService.user.name">
-        <quizz-next class="next" next="/email"></quizz-next>
+            [(ngModel)]="userService.user.name"
+            [formControl]="name">
+        <button type="submit" class="next"
+                [disabled]="!name.valid" (click)="submit()">Next!</button>
       </div>
     </div>
   </div>

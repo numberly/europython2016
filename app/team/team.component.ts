@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CORE_DIRECTIVES} from '@angular/common';
 
-import {NextComponent} from './../next/next.component';
 import {UserService} from './../user/user.service';
 import { User } from './../user/user';
 import {Router} from '@angular/router';
