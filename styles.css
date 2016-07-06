@@ -144,9 +144,9 @@ nav a.router-link-active {
 /* pikachu */
 
 #pikachu {
-  width: 250px;
-  height: 240px;
-  background-image: url(assets/pikachu250x250.png);
+  width: 195px;
+  height: 219px;
+  background-image: url(assets/zaza.png);
   position: absolute;
   -webkit-animation-name: pikachu; /* Chrome, Safari, Opera */
   -webkit-animation-duration: 4s; /* Chrome, Safari, Opera */
@@ -185,9 +185,9 @@ nav a.router-link-active {
   }
 
   #salameche {
-    width: 250px;
-    height: 283px;
-    background-image: url(assets/salameche250x283.png);
+    width: 152px;
+    height: 168px;
+    background-image: url(assets/trotrotromp.png);
     position: absolute;
     -webkit-animation-name: salameche; /* Chrome, Safari, Opera */
     -webkit-animation-duration: 4s; /* Chrome, Safari, Opera */
@@ -226,9 +226,9 @@ nav a.router-link-active {
   }
 
 #carapuce{
-  width: 250px;
-  height: 258px;
-  background-image: url(assets/carapuce250x250.png);
+  width: 124px;
+  height: 187px;
+  background-image: url(assets/trotrorol.png);
   position: absolute;
   -webkit-animation-name: carapuce; /* Chrome, Safari, Opera */
   -webkit-animation-duration: 4s; /* Chrome, Safari, Opera */
@@ -267,9 +267,9 @@ nav a.router-link-active {
 }
 
 #bulbizarre{
-  width: 250px;
-  height: 233px;
-  background-image: url(assets/bulbizarre250x250.png);
+  width: 242px;
+  height: 147px;
+  background-image: url(assets/trotrodo2.png);
   position: absolute;
   -webkit-animation-name: bulbizarre; /* Chrome, Safari, Opera */
   -webkit-animation-duration: 4s; /* Chrome, Safari, Opera */
