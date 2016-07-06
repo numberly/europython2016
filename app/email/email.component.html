@@ -4,13 +4,14 @@
       <img src="assets/Decibels-Productions_Artiste_ane-trotro-1.jpg" class="background" />
       <div class="absolute">
         <form>
-          <input type="email" required
-                 placeholder="What's your email address sweetie?"
-                 class="form-control email-input"
-                 [(ngModel)]="userService.user.email"
-                 [formControl]="email">
+          <input type="email" required id="email-input"
+              placeholder="What's your email address sweetie?"
+              class="form-control email-input"
+              [(ngModel)]="userService.user.email"
+              [formControl]="email">
           <button type="submit" class="next"
-                  [disabled]="!email.valid" (click)="submit()">Next!</button>
+                  [disabled]="!email.valid"
+                  (click)="fireEmailTag(); submit()">Next!</button>
         </form>
       </div>
     </div>
