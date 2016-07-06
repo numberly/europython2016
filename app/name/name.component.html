@@ -3,13 +3,15 @@
     <div class="banner col-xs-12">
       <img src="assets/Decibels-Productions_Artiste_ane-trotro-1.jpg" class="background" />
       <div class="absolute">
-        <input type="text" required
-            placeholder="What's your name babe?"
-            class="form-control name-input"
-            [(ngModel)]="userService.user.name"
-            [formControl]="name">
-        <button type="submit" class="next"
-                [disabled]="!name.valid" (click)="submit()">Next!</button>
+        <form>
+          <input type="text" required
+                 placeholder="What's your name babe?"
+                 class="form-control name-input"
+                 [(ngModel)]="userService.user.name"
+                 [formControl]="name">
+          <button type="submit" class="next"
+                  [disabled]="!name.valid" (click)="submit()">Next!</button>
+        </form>
       </div>
     </div>
   </div>
