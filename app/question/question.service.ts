@@ -14,7 +14,6 @@ export class QuestionService {
     private questionUrl = baseUrl + 'api/question/';  // URL to web api
 
     constructor(private http: Http, private userService: UserService) {
-        console.log(userService);
     }
 
     getQuestions() {
@@ -26,11 +25,7 @@ export class QuestionService {
         // post on /question/:id  with {answer_index, id_user}
         let response = new Response();
         response.answer_index = answer_index;
-        response.id_user = "0ef60f5e730400811b823f5e5dfc1776";
-        console.log(response);
-
-        //   response.id_user = this.userService.user.id;
-
+        response.id_user = this.userService.user.id;
         return this.post(question_id, response);
     }
 
@@ -40,10 +35,9 @@ export class QuestionService {
             'Content-Type': 'application/json'
         });
         let url = this.questionUrl + question_id;
-        console.log("why so mean?", url);
+        let strResponse = JSON.stringify(response);
         return this.http
-            .post(url,
-            JSON.stringify(response), { headers: headers })
+            .post(url, strResponse, { headers: headers })
             .map(res => res.json());
     }
 

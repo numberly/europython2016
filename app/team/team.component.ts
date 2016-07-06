@@ -36,6 +36,7 @@ export class TeamComponent implements OnInit {
 
     handleUserCreation(user: User) {
         console.log('User: ', user);
+        this.userService.user = user;
         let link = ['/countdown'];
         this.router.navigate(link);
     }

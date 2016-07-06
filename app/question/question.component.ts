@@ -26,7 +26,8 @@ export class QuestionComponent implements OnInit {
 
     selectAnswer(answer: string) {
         let index = this.question.answers.indexOf(answer);
-        this.questionService.save(this.question.id, index);
+        this.questionService.save(this.question.id, index)
+         .subscribe(question => this.nextQuestion());
     }
 
     nextQuestion() {
