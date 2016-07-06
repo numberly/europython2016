@@ -13,6 +13,7 @@ export class QuestionComponent implements OnInit {
 
     questions: Question[];
     question: Question;
+    interval: NodeJS.Timer;
     countdown: number;
     counter: number;
     constructor(private router: Router,
@@ -59,7 +60,6 @@ export class QuestionComponent implements OnInit {
     }
 
     goResult() {
-        this.go = true;
         setTimeout(() => {
             let link = ['/result'];
             this.router.navigate(link);
