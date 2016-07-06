@@ -1,7 +1,7 @@
 <form>
   <input type="email" required id="email-input"
       placeholder="What's your email address sweetie?"
-      class="form-control email-input"
+      class="form-control email-input" autofocus="true"
       [(ngModel)]="userService.user.email"
       [formControl]="email">
   <button type="submit" class="next"
