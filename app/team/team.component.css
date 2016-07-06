@@ -6,14 +6,6 @@
     padding-top: 50px;
     text-align: right;
 }
-.banner img{
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  filter: opacity(0.3);
-
-}
 .items {
   border: 1px solid #ec6293;
   border-radius: 20px;

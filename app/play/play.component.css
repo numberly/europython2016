@@ -6,24 +6,16 @@
     padding-top: 100px;
     text-align: right;
 }
-.banner img{
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  filter: opacity(0.5);
-
-}
 .banner .title{
   position: absolute;
   right: 10px;
-  top: 110px;
+  top: 230px;
 }
 .play-btn {
     background-color: #ec6293;
     color: white;
     font-size: 50px;
     position: absolute;
-    bottom: 3px;
-    right: 10px;
+    top: 90px;
+    right: 50px;
 }

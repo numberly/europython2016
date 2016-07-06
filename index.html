@@ -23,10 +23,26 @@
       console.error(err);
     });
     </script>
+    <style>
+      .app::after {
+        content: "";
+        background: url('/assets/Decibels-Productions_Artiste_ane-trotro-1.jpg') no-repeat;
+        opacity: 0.3;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        position: fixed;
+        z-index: -1;
+        max-width: 100%;
+      }
+    </style>
   </head>
 
   <body>
-    <quizz-app>Loading...</quizz-app>
+    <div class="app">
+      <quizz-app>Loading...</quizz-app>
+    </div>
     <script>
       document.addEventListener("DOMContentLoaded", function(event) {
 

@@ -20,7 +20,7 @@ export const teams = [
         id: 'email'
     },
     {
-        name: 'Projets internes et outils',
+        name: 'Projets internes',
         icon: 'fa-gitlab',
         id: 'projetsinternes'
     },
@@ -45,18 +45,18 @@ export const teams = [
         id: 'datascientists'
     },
     {
-        name: 'Opés – Front',
-        icon: 'fa-apple',
-        id: 'opesfront'
-    },
-    {
-        name: 'Opés – Back',
-        icon: 'fa-code',
-        id: 'opesback'
-    },
-    {
         name: 'Sysadmin',
         icon: 'fa-linux',
         id: 'sysadmin'
+    },
+    {
+        name: 'OP – Front',
+        icon: 'fa-apple',
+        id: 'opfront'
+    },
+    {
+        name: 'OP – Back',
+        icon: 'fa-code',
+        id: 'opback'
     },
 ];

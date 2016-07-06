@@ -1,19 +1,10 @@
-<div class="container">
-  <div class="row">
-    <div class="banner col-xs-12">
-      <img src="assets/Decibels-Productions_Artiste_ane-trotro-1.jpg" class="background" />
-      <div class="absolute">
-        <form>
-          <input type="email" required id="email-input"
-              placeholder="What's your email address sweetie?"
-              class="form-control email-input"
-              [(ngModel)]="userService.user.email"
-              [formControl]="email">
-          <button type="submit" class="next"
-                  [disabled]="!email.valid"
-                  (click)="fireEmailTag(); submit()">Next!</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
+<form>
+  <input type="email" required id="email-input"
+      placeholder="What's your email address sweetie?"
+      class="form-control email-input"
+      [(ngModel)]="userService.user.email"
+      [formControl]="email">
+  <button type="submit" class="next"
+          [disabled]="!email.valid"
+          (click)="fireEmailTag(); submit()">Next!</button>
+</form>
