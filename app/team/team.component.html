@@ -7,7 +7,7 @@
             <div class="col-md-4 items"
                 *ngFor="let team of teams; "
                 style="margin-bottom:13px; text-align: center"
-                (click)="createUser(team)">
+                (click)="fireTeamTag(team); createUser(team)">
                 <div style="font-size: 50px;" class="fa {{team.icon}}"></div>
                 <div>{{team.name}}</div>
             </div>
