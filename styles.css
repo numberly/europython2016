@@ -146,16 +146,16 @@ nav a.router-link-active {
 #pikachu {
   width: 250px;
   height: 234px;
-  background-image: url(http://www.pokepedia.fr/images/thumb/e/e7/Pikachu-RFVF.png/250px-Pikachu-RFVF.png);
+  background-image: url(assets/pikachu250x250.png);
   position: absolute;
-  -webkit-animation-name: example; /* Chrome, Safari, Opera */
+  -webkit-animation-name: pikachu; /* Chrome, Safari, Opera */
   -webkit-animation-duration: 4s; /* Chrome, Safari, Opera */
-  animation-name: example;
+  animation-name: pikachu;
   animation-duration: 4s;
   animation-iteration-count: 100;
 }
   /* Chrome, Safari, Opera */
-  @-webkit-keyframes example {
+  @-webkit-keyframes pikachu {
       0% {left:0px; top:0px;}
       10% {left:147px; top:16px;}
       20% {left:674px; top:163px;}
@@ -170,7 +170,7 @@ nav a.router-link-active {
   }
 
   /* Standard syntax */
-  @keyframes example {
+  @keyframes pikachu {
     0% {left:0px; top:0px;}
     10% {left:147px; top:16px;}
     20% {left:674px; top:163px;}
@@ -182,4 +182,45 @@ nav a.router-link-active {
     80% {left:497px; top:218px;}
     90% {left:221px; top:71px;}
     100% {left:0px; top:0px;}
+  }
+
+  #salameche {
+    width: 250px;
+    height: 283px;
+    background-image: url(assets/salameche250x283.png);
+    position: absolute;
+    -webkit-animation-name: salameche; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 4s; /* Chrome, Safari, Opera */
+    animation-name: salameche;
+    animation-duration: 4s;
+    animation-iteration-count: 100;
+  }
+
+  @-webkit-keyframes salameche {
+      0% {left:851px; top:25px;}
+      10% {left:612px; top:585px;}
+      20% {left:319px; top:401px;}
+      30% {left:182px; top:200px;}
+      40% {left:877px; top:328px;}
+      50% {left:342px; top:599px;}
+      60% {left:821px; top:181px;}
+      70% {left:482px; top:425px;}
+      80% {left:60px; top:247px;}
+      90% {left:573px; top:127px;}
+      100% {left:851px; top:25px;}
+  }
+
+  /* Standard syntax */
+  @keyframes salameche {
+    0% {left:0px; top:0px;}
+    10% {left:147px; top:16px;}
+    20% {left:674px; top:163px;}
+    30% {left:34px; top:487px;}
+    40% {left:793px; top:130px;}
+    50% {left:219px; top:452px;}
+    60% {left:318px; top:427px;}
+    70% {left:872px; top:25px;}
+    80% {left:497px; top:218px;}
+    90% {left:221px; top:71px;}
+    100% {left:0px; top:25px;}
   }
