@@ -10,7 +10,7 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class UserService {
 
-    private usersUrl = baseUrl + '/users';  // URL to web api
+    private usersUrl = baseUrl + 'api/users';  // URL to web api
     user: User;
 
     constructor(private http: Http) {

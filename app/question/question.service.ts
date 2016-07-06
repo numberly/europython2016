@@ -10,8 +10,8 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class QuestionService {
     // baseUrl +
-    private questionsUrl = 'api/questions';  // URL to web api
-    private questionUrl = 'api/question/';  // URL to web api
+    private questionsUrl = baseUrl + 'api/questions';  // URL to web api
+    private questionUrl = baseUrl + 'api/question/';  // URL to web api
 
     constructor(private http: Http, private userService: UserService) {
         console.log(userService);
