@@ -1,0 +1,22 @@
+{
+  "name": "quizz",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Guillaume Gelin <ramnes@1000mercis.com>"
+  ],
+  "license": "(c) 1000mercis",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "flag-icon-css": "^2.3.1",
+    "font-awesome": "^4.6.3"
+  }
+}
