@@ -9,6 +9,34 @@ import {Router} from '@angular/router';
 export class PlayComponent {
     constructor(private router: Router) { }
 
+    fireStartTag() {
+      (<any>window)._troq = (<any>window)._troq || [];
+
+      try{
+        var rtgpg = document.location.pathname.substr(1).split('/').join('-');
+      } catch (e) {
+        console.log(e);
+        var rtgpg = 'idontknowwhereyouaredudecomeonehelpmefindout';
+      }
+
+      (<any>window)._troq.push(
+        ['tagid', '6562426-aeb6f8d8e7ba926984e4346e2bd36083'],
+        ['_rtgscore', 0]
+
+      );
+
+      (function() {
+        if ((<any>window)._troqck !== 1) {
+          var a = document.createElement("script");
+          a.type = "text/javascript";
+          a.async = !0;
+          a.src = "//mmtro.com/tro.js";
+          var b = document.getElementsByTagName("script")[0];
+          b.parentNode.insertBefore(a, b);
+        }
+      })();
+    }
+
     goToName() {
         let link = ['/name'];
         this.router.navigate(link);
