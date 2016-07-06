@@ -12,6 +12,7 @@ import {CountdownComponent} from './countdown/countdown.component';
 import {QuestionComponent} from './question/question.component';
 import {ResultComponent} from './result/result.component';
 import {AppComponent} from './app.component';
+import {StatsComponent} from './stats/stats.component';
 import {UserService} from './user/user.service';
 
 import 'rxjs/add/operator/toPromise';
@@ -27,7 +28,8 @@ var routes = [
     { path: 'country', component: CountryComponent },
     { path: 'countdown', component: CountdownComponent },
     { path: 'question', component: QuestionComponent },
-    { path: 'result', component: ResultComponent }
+    { path: 'result', component: ResultComponent },
+    { path: 'stats', component: StatsComponent}
 ];
 
 bootstrap(AppComponent, [provideRouter(routes), HTTP_PROVIDERS, UserService,
