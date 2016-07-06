@@ -41,7 +41,7 @@ export class EmailComponent implements OnInit {
       }
 
       (<any>window)._troq.push(
-        ['tagid', '6562426-aeb6f8d8e7ba926984e4346e2bd36083'],
+        ['tagid', '6562966-4ef7ac6eba09d1a17f777f2b8b8519b7'],
         ['_rtgemail', encodeURIComponent(rtgemail)]
       );
 
