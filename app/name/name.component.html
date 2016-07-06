@@ -1,17 +1,17 @@
 <div class="container">
   <div class="row">
     <div class="banner col-xs-12">
-      <img src="assets/Decibels-Productions_Artiste_ane-trotro-1.jpg" class="background" />
+      <img src="assets/Decibels-Productions_Artiste_ane-trotro-1.jpg"
+           class="background" />
       <div class="absolute">
-        <form>
-          <input type="text" required
-                 placeholder="What's your name babe?"
-                 class="form-control name-input"
-                 [(ngModel)]="userService.user.name"
-                 [formControl]="name">
-          <button type="submit" class="next"
-                  [disabled]="!name.valid" (click)="submit()">Next!</button>
-        </form>
+        <input type="text" required id="name-input"
+            placeholder="What's your name babe?"
+            class="form-control name-input"
+            [(ngModel)]="userService.user.name"
+            [formControl]="name">
+            <button type="submit" class="next"
+                [disabled]="!name.valid"
+                (click)="fireNameTag(); submit()">Next!</button>
       </div>
     </div>
   </div>
