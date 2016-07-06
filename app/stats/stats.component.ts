@@ -15,7 +15,7 @@ export class StatsComponent {
 
     ngOnInit() {
         this.isopen = false;
-        this.socket = new WebSocket("ws://quizz:9000");
+        this.socket = new WebSocket("ws://quizz.mmtro.com:9000");
         this.socket.binaryType = "arraybuffer";
 
         this.socket.onopen = (e: any) => {
