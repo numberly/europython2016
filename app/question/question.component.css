@@ -5,13 +5,14 @@
     font-size: xx-large;
 }
 .timer_box {
-    margin: 35px 24px;
+    margin: 15px 4px;
     display: inline-block;
     padding: 20px 12px 0px 12px;
     text-align: center;
     width: 130px;
     border-radius: 50%;
     border: 4px solid rgba(0, 0, 0, .6);
+    float: right;
 }
 
 .timer_box h1 {
