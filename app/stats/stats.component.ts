@@ -1,41 +1,81 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
+import { Scores } from './stats.scores';
+import { User } from '../user/user';
+import { UserService } from '../user/user.service';
+import { UsersInterface } from '../user/users.interface';
+import { OrderByPipe} from './stats.pipe';
 
 @Component({
     selector: 'quizz-stats',
     templateUrl: 'app/stats/stats.component.html',
-    styleUrls: ['app/stats/stats.component.css']
+    styleUrls: ['app/stats/stats.component.css'],
+    pipes: [OrderByPipe]
 })
+
 export class StatsComponent {
-    constructor(private router: Router) { }
+    constructor(private router: Router,
+        private userService: UserService) { }
 
 
     public socket: WebSocket;
     public isopen: boolean;
+    scores: Scores[];
+    users: { [id: string]: User };
 
     ngOnInit() {
         this.isopen = false;
         this.socket = new WebSocket("ws://quizz.mmtro.com:9000");
         this.socket.binaryType = "arraybuffer";
+        this.users = {};
 
         this.socket.onopen = (e: any) => {
             console.log("Connected!");
             this.isopen = true;
+            this.get_scores();
+
         };
 
         this.socket.onmessage = (e: any) => {
-            console.log(e);
+
             if (typeof e.data == "string") {
                 let result = JSON.parse(e.data);
-                console.log(result);
-                // console.log("Text message received: " + e.data);
-            } else {
-                var arr = new Uint8Array(e.data);
-                var hex = '';
-                for (var i = 0; i < arr.length; i++) {
-                    hex += ('00' + arr[i].toString(16)).substr(-2);
+                if (result.scores) {
+                    console.log('retrieves stats All scores');
+
+                    this.userService.getUsers()
+                        .subscribe(users => this.handleUsers(users, result.scores));
+                } else if (result.hasOwnProperty('new_val')) {
+                    console.log('retrieves stats rt for all scores');
+                    if (result.new_val === null) {
+                        this.scores = [];
+
+                    } else {
+
+                        let x = false;
+                        for (var el of this.scores) {
+                            if (el.id_user === result.new_val.id_user) {
+                                el.total_score = result.new_val.total_score;
+                                x = true;
+                            }
+                        }
+                        if (!x) {
+                            // if we don't have the user we retrieve all the users (for now)
+                            // but before we update the scores :)
+                            console.log(this.users);
+                            console.log(result.new_val);
+                            console.log(this.scores);
+                        }
+                    }
+                    // console.log("Text message received: " + e.data);
+                } else {
+                    var arr = new Uint8Array(e.data);
+                    var hex = '';
+                    for (var i = 0; i < arr.length; i++) {
+                        hex += ('00' + arr[i].toString(16)).substr(-2);
+                    }
+                    console.log("Binary message received: " + hex);
                 }
-                console.log("Binary message received: " + hex);
             }
         }
 
@@ -45,12 +85,22 @@ export class StatsComponent {
             this.isopen = false;
         }
     }
+
+    handleUsers(users: User[], scores: Scores[]) {
+        this.scores = scores; this.rt_scores();
+
+        if (!!users) {
+            this.users = users.reduce(function(acc: { [id: string]: User }, el: User) {
+                acc[el.id] = el;
+                return acc;
+            }, this.users);
+
+        }
+    }
+
     get_scores() {
         if (this.isopen) {
             this.socket.send("get_scores");
-            // this.socket.send("get_scores", true);
-
-            // console.log("Text message sent.");
         } else {
             console.log("Connection not opened.")
         }

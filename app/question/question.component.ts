@@ -30,9 +30,10 @@ export class QuestionComponent implements OnInit {
 
     selectAnswer(answer: string) {
         let index = this.question.answers.indexOf(answer);
+        let questionId = this.question.id;
         this.question = this.questions[this.counter];
         this.counter = this.counter + 1;
-        this.questionService.save(this.question.id, index)
+        this.questionService.save(questionId, index)
             .subscribe(question => this.nextQuestion(question));
         if (this.counter === this.questions.length) {
             this.goResult();

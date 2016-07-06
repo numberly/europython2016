@@ -31,19 +31,21 @@
   <button (click)='rt_top_by_country()'>RT top countries</button>
 </div>
   <div class="row">
-    <table class="table">
+    <table class="table  table-sm" style="background-color: white;">
       <thead>
         <tr>
+          <th>id</th>
           <th>Team</th>
           <th>N + E</th>
           <th>Score</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
+        <tr *ngFor="let score of scores">
+          <td>{{score.id_user}}</td>
+          <td>{{users[score.id_user].team}}</td>
+          <td>{{users[score.id_user].name}}</td>
+          <td>{{score.total_score}}</td>
 
         </tr>
 
