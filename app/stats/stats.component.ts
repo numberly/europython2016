@@ -62,9 +62,8 @@ export class StatsComponent {
                         if (!x) {
                             // if we don't have the user we retrieve all the users (for now)
                             // but before we update the scores :)
-                            console.log(this.users);
-                            console.log(result.new_val);
-                            console.log(this.scores);
+                            this.userService.getUsers()
+                                .subscribe(users => this.handleNewUser(users, result.new_val));
                         }
                     }
                     // console.log("Text message received: " + e.data);
@@ -86,6 +85,19 @@ export class StatsComponent {
         }
     }
 
+    handleNewUser(users: User[], score: Scores) {
+        if (!!users) {
+            console.log('handleNewUser');
+            console.log(score);
+
+            this.users = users.reduce(function(acc: { [id: string]: User }, el: User) {
+                acc[el.id] = el;
+                return acc;
+            }, this.users);
+            this.scores.push(score);
+
+        }
+    }
     handleUsers(users: User[], scores: Scores[]) {
         this.scores = scores; this.rt_scores();
 
