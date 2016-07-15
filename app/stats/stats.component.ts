@@ -42,11 +42,12 @@ export class StatsComponent {
                 let result = JSON.parse(e.data);
                 if (result.scores) {
                     console.log('retrieves stats All scores');
-
+                    console.log(result.scores);
                     this.userService.getUsers()
                         .subscribe(users => this.handleUsers(users, result.scores));
                 } else if (result.hasOwnProperty('new_val')) {
                     console.log('retrieves stats rt for all scores');
+                    console.log(result.new_val);
                     if (result.new_val === null) {
                         this.scores = [];
 
@@ -59,6 +60,16 @@ export class StatsComponent {
                                 x = true;
                             }
                         }
+                        this.scores = this.scores.sort(function(a, b) {
+                            if (a.total_score === b.total_score) {
+                                return 0;
+                            }
+                            if (a.total_score < b.total_score) {
+                                return 1;
+                            } else {
+                                return -1;
+                            }
+                        });
                         if (!x) {
                             // if we don't have the user we retrieve all the users (for now)
                             // but before we update the scores :)
@@ -95,11 +106,33 @@ export class StatsComponent {
                 return acc;
             }, this.users);
             this.scores.push(score);
+            this.scores = this.scores.sort(function(a, b) {
+                if (a.total_score === b.total_score) {
+                    return 0;
+                }
+                if (a.total_score < b.total_score) {
+                    return 1;
+                } else {
+                    return -1;
+                }
+            });
+            // sort scores
 
         }
     }
     handleUsers(users: User[], scores: Scores[]) {
+        scores = scores.sort(function(a, b) {
+            if (a.total_score === b.total_score) {
+                return 0;
+            }
+            if (a.total_score < b.total_score) {
+                return 1;
+            } else {
+                return -1;
+            }
+        });
         this.scores = scores; this.rt_scores();
+        // sort scores;
 
         if (!!users) {
             this.users = users.reduce(function(acc: { [id: string]: User }, el: User) {
