@@ -29,9 +29,10 @@ export class TeamComponent implements OnInit {
     createUser(team: { name: string, icon: string }) {
         this.userService.user.team = team.name;
         // take screenshot :)
+        this.takePicture();
         // go to countdown
-        this.userService.save(this.userService.user)
-            .subscribe(user => this.handleUserCreation(user));
+        // this.userService.save(this.userService.user)
+        //     .subscribe(user => this.handleUserCreation(user));
     }
 
     handleUserCreation(user: User) {
@@ -39,4 +40,26 @@ export class TeamComponent implements OnInit {
         let link = ['/countdown'];
         this.router.navigate(link);
     }
+
+    takePicture() {
+        var n = <any>navigator;
+        n.getUserMedia  = n.getUserMedia || n.webkitGetUserMedia || n.mozGetUserMedia || n.msGetUserMedia;
+        return  n.getUserMedia({video: true, audio:true}, this.onSuccess, this.onFail);
+
+    }
+
+    onSuccess (stream: any) {
+        let video = <HTMLVideoElement>document.getElementById("video");
+        let canvas = <HTMLCanvasElement>document.getElementById("canvas");
+        let context = canvas.getContext("2d");
+        video.src = stream;
+        video.play();
+        context.drawImage(video, 0, 0, 640, 480);
+    }
+
+    onFail () {
+        console.log('toto');
+    }
+
+
 }
