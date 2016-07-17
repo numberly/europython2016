@@ -24,6 +24,6 @@ export class EmailComponent implements OnInit {
     }
 
     submit() {
-        this.router.navigate(['/team']);
+        this.router.navigate(['/country']);
     }
 }
