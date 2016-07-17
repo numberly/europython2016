@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <script type="text/javascript">
+         var socket = null;
+         var isopen = false;
+
+         window.onload = function() {
+
+            socket = new WebSocket("ws://127.0.0.1:9000");
+            socket.binaryType = "arraybuffer";
+
+            socket.onopen = function() {
+               console.log("Connected!");
+               isopen = true;
+            }
+
+            socket.onmessage = function(e) {
+               if (typeof e.data == "string") {
+                  result = JSON.parse(e.data);
+                  console.log(result);
+                  // console.log("Text message received: " + e.data);
+               } else {
+                  var arr = new Uint8Array(e.data);
+                  var hex = '';
+                  for (var i = 0; i < arr.length; i++) {
+                     hex += ('00' + arr[i].toString(16)).substr(-2);
+                  }
+                  console.log("Binary message received: " + hex);
+               }
+            }
+
+            socket.onclose = function(e) {
+               console.log("Connection closed.");
+               socket = null;
+               isopen = false;
+            }
+         };
+
+         function get_scores() {
+            if (isopen) {
+               socket.send("get_scores", true);
+               // console.log("Text message sent.");
+            } else {
+               console.log("Connection not opened.")
+            }
+         };
+
+         function get_score(id_user) {
+            if (isopen) {
+               socket.send("get_scores " + id_user, true);
+               // console.log("Request score for user.");
+            } else {
+               console.log("Connection not opened.")
+            }
+         };
+
+         function rt_scores() {
+            if (isopen) {
+               socket.send("rt_scores", true);
+               // console.log("Text message sent.");
+            } else {
+               console.log("Connection not opened.")
+            }
+         };
+
+         function rt_top_by_day() {
+            if (isopen) {
+               socket.send("rt_top_by_day 2016-07-18", true);
+               // console.log("Text message sent.");
+            } else {
+               console.log("Connection not opened.")
+            }
+         };
+
+         function rt_top_overall() {
+            if (isopen) {
+               socket.send("rt_top_overall", true);
+               // console.log("Text message sent.");
+            } else {
+               console.log("Connection not opened.")
+            }
+         };         
+
+         function rt_score(id_user) {
+            if (isopen) {
+               socket.send("rt_scores " + id_user, true);
+               // console.log("Text message sent.");
+            } else {
+               console.log("Connection not opened.")
+            }
+         };
+
+         function rt_get_users() {
+            if (isopen) {
+               socket.send("rt_get_users", true);
+               // console.log("Text message sent.");
+            } else {
+               console.log("Connection not opened.")
+            }
+         };
+
+         function sendBinary() {
+            if (isopen) {
+               var buf = new ArrayBuffer(32);
+               var arr = new Uint8Array(buf);
+               for (i = 0; i < arr.length; ++i) arr[i] = i;
+               socket.send(buf);
+               console.log("Binary message sent.");
+            } else {
+               console.log("Connection not opened.")
+            }
+         };
+      </script>
+   </head>
+   <body>
+      <p>Open your browser's JavaScript console to see what's happening (hit F12).</p>
+      <button onclick='get_scores();'>All scores</button>
+      <button onclick='get_score("0853409603dc5025bb80f48011109397");'>Score for user</button>
+      <button onclick='rt_scores();'>RT scores</button>
+      <button onclick='rt_score("0853409603dc5025bb80f48011109397");'>RT score for user</button>
+      <button onclick='rt_top_by_day();'>RT top by day</button>
+      <button onclick='rt_top_overall();'>Best score overall</button>
+      <button onclick='rt_get_users();'>RT users</button>
+      <!-- <button onclick='sendBinary();'>Send Binary Message</button> -->
+   </body>
+</html>
+
