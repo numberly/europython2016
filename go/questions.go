@@ -7,11 +7,12 @@ import (
 	r "gopkg.in/dancannon/gorethink.v2"
 	"net/http"
 	"strconv"
+	"time"
 )
 
 // getUsersHandler retrieves all user from rethinkdb
 func getQuestionsHandler(res http.ResponseWriter, req *http.Request) {
-	cursor, err := r.Table("questions").Sample(200).Run(session)
+	cursor, err := r.Table("questions").Run(session)
 	if err != nil {
 		genericError(err.Error(), res)
 		return
@@ -79,18 +80,18 @@ func postQuestionHandler(res http.ResponseWriter, req *http.Request) {
 	defer cursor.Close()
 	defer cursorQuestion.Close()
 
-	var answer validQuestion
+	var answer responseValidQuestion
 	answer.Data = false
 	if question.Index == jsonQuestion.AnswerIndex {
 		answer.Data = true
+		currentTime := time.Now().Local()
 		var score rethinkScore
-		var IDScore = fmt.Sprintf("%v_%v", "2016-07-07", IDUser)
+		var IDScore = fmt.Sprintf("%v_%v", currentTime.Format("2000-01-01"), IDUser)
 
 		cursorScore, err := r.Table("scores").Get(IDScore).Run(session)
 		err = cursorScore.One(&score)
 		if err == r.ErrEmptyResult {
-			// TODO: dynamic date
-			score.Date = "2016-07-07"
+			score.Date = currentTime
 			score.ID = IDScore
 			score.IDUser = IDUser
 			score.TotalScore = 1

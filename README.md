@@ -20,11 +20,18 @@ Basic usage
 
 Go STUFF
 ========
+disclaimer
+----------
+First golang application (btw, write by an sysadmin guy) !
+
+Don't be afraid !
+
 
 requirements
 ------------
 ```yaml
 go get github.com/gorilla/mux
+go get github.com/gorilla/handlers
 go get gopkg.in/dancannon/gorethink.v2
 go get github.com/rs/cors
 

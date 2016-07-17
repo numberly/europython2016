@@ -3,8 +3,8 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
-	"github.com/rs/cors"
 	r "gopkg.in/dancannon/gorethink.v2"
 	"log"
 	"net/http"
@@ -73,12 +73,8 @@ func main() {
 	r.HandleFunc("/api/questions", getQuestionsHandler).Methods("GET")
 	r.HandleFunc("/api/question/{id}", postQuestionHandler).Methods("POST")
 
-	c := cors.New(cors.Options{
-		AllowedOrigins: []string{"*"},
-	})
-
-	handler := c.Handler(r)
-	errHTTP := http.ListenAndServe(fmt.Sprintf(":%v", port), handler)
+	loggerHandler := handlers.LoggingHandler(os.Stdout, r)
+	errHTTP := http.ListenAndServe(fmt.Sprintf(":%v", port), loggerHandler)
 	if errHTTP != nil {
 		log.Fatal("ListenAndServe: ", errHTTP)
 	}

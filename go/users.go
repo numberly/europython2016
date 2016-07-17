@@ -10,8 +10,6 @@ import (
 
 // getUsersHandler retrieves all user from rethinkdb
 func getUsersHandler(res http.ResponseWriter, req *http.Request) {
-	fmt.Printf("get users\n")
-
 	cursor, err := r.Table("users").Run(session)
 	if err != nil {
 		genericError(err.Error(), res)
@@ -39,7 +37,6 @@ func getUserHandler(res http.ResponseWriter, req *http.Request) {
 	}
 	muxVars := mux.Vars(req)
 	id := muxVars["id"]
-	fmt.Printf("get user :: %s\n", id)
 
 	cursor, err := r.Table("users").Get(id).Run(session)
 	if err != nil {
@@ -78,7 +75,7 @@ func postUsersHandler(res http.ResponseWriter, req *http.Request) {
 	user.Email = email
 	user.ID = getMD5Hash(email)
 	user.Name = jsonUser.Name
-	user.Team = jsonUser.Team
+	user.Country = jsonUser.Country
 	user.Cool = jsonUser.Cool
 	jsonUser.ID = user.ID
 

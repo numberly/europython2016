@@ -1,19 +1,20 @@
 package main
 
+// User models
 type User struct {
-	Cool  bool   `json:"cool"`
-	Email string `json:"email"`
-	ID    string `json:"id"`
-	Name  string `json:"name"`
-	Team  string `json:"team"`
+	Cool    bool   `json:"cool"`
+	Email   string `json:"email"`
+	ID      string `json:"id"`
+	Name    string `json:"name"`
+	Country string `json:"country"`
 }
 
 type rethinkUser struct {
-	Cool  bool   `gorethink:"cool"`
-	Email string `gorethink:"email"`
-	ID    string `gorethink:"id"`
-	Name  string `gorethink:"name"`
-	Team  string `gorethink:"team"`
+	Cool    bool   `gorethink:"cool"`
+	Email   string `gorethink:"email"`
+	ID      string `gorethink:"id"`
+	Name    string `gorethink:"name"`
+	Country string `gorethink:"country"`
 }
 
 type responseUser struct {
@@ -24,6 +25,7 @@ type responseUsers struct {
 	User []User `json:"data"`
 }
 
+// Question models
 type Question struct {
 	Index   int      `json:"answer_index"`
 	Answers []string `json:"answers"`
@@ -51,10 +53,11 @@ type responseQuestion struct {
 	Question Question `json:"data"`
 }
 
-type validQuestion struct {
+type responseValidQuestion struct {
 	Data bool `json:"data"`
 }
 
+// Score models
 type Score struct {
 	Date       string `json:"date"`
 	ID         string `json:"id"`
@@ -69,6 +72,7 @@ type rethinkScore struct {
 	TotalScore int    `gorethink:"total_score"`
 }
 
+// Other models
 type apiError struct {
 	Error string `json:"error"`
 }
