@@ -27,7 +27,7 @@ export class TeamComponent implements OnInit {
     }
 
     createUser(team: { name: string, icon: string }) {
-        this.userService.user.team = team.name;
+        this.userService.user.country = team.name;
         // take screenshot :)
         this.takePicture();
         // go to countdown
