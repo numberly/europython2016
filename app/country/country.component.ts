@@ -33,7 +33,7 @@ export class CountryComponent {
 	select(item : string){
 	    this.userService.user.country = item;
 	    this.filteredList = [];
-	    this.router.navigate(['/email']);
+	    this.router.navigate(['/countdown']);
 	}
 
 	public countryMap = {"Afghanistan"	:"AF",
