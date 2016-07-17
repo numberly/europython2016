@@ -5,5 +5,5 @@
       [(ngModel)]="userService.user.name"
       [formControl]="name">
   <button type="submit" class="next"
-          [disabled]="!name.valid" (click)="fireNameTag(); submit()">Next!</button>
+          [disabled]="!name.valid" (click)="submit()">Next!</button>
 </form>

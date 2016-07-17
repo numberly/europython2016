@@ -5,7 +5,7 @@
         <div class="row">
           <div class="col-xs-5 col-xs-offset-1 items" *ngFor="let team of teams">
             <div style="margin-bottom:13px; text-align: center; cursor: pointer"
-                 (click)="fireTeamTag(team); createUser(team)">
+                 (click)="createUser(team)">
               <div style="font-size: 50px;" class="fa {{team.icon}}"></div>
               <div>{{team.name}}</div>
             </div>

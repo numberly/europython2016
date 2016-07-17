@@ -116,8 +116,6 @@ export class StatsComponent {
                     return -1;
                 }
             });
-            // sort scores
-
         }
     }
     handleUsers(users: User[], scores: Scores[]) {
