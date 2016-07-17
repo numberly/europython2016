@@ -1,16 +1,22 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {Router} from '@angular/router';
+import {REACTIVE_FORM_DIRECTIVES, FormControl, Validators} from "@angular/forms";
+
+import {UserService} from './../user/user.service';
 
 @Component({
     selector: 'quizz-country',
     templateUrl: 'app/country/country.component.html',
-    styleUrls: ['app/country/country.component.css']
+    styleUrls: ['app/country/country.component.css'],
+    directives: [REACTIVE_FORM_DIRECTIVES]
 })
-export class CountryComponent implements OnInit {
+export class CountryComponent {
+    country: FormControl = new FormControl("", [Validators.required]);
 
-    constructor(private router: Router) {
+    constructor(private router: Router, private userService: UserService) {
     }
 
-    ngOnInit() {
+    submit() {
+        this.router.navigate(['/email']);
     }
 }

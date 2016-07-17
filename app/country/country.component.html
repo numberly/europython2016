@@ -1,4 +1,14 @@
-<div class="row">
+<form>
+  <input type="text" required id="name-input"
+      placeholder="What's your country?" autofocus="true"
+      class="form-control name-input"
+      [(ngModel)]="userService.user.country"
+      [formControl]="country">
+  <button type="submit" class="next"
+          [disabled]="!country.valid" (click)="submit()">Next!</button>
+</form>
+
+<!-- <div class="row">
   <div class="col-md-1 col-sm-2 col-xs-3">
     <div class="flag-wrapper">
       <div class="img-thumbnail flag flag-icon-background flag-icon-ad"
@@ -1742,4 +1752,4 @@
           id="zw"></div>
     </div>
   </div>
-</div>
+</div> -->
