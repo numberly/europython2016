@@ -68,7 +68,12 @@ class ScoresProtocol(WebSocketServerProtocol):
     async def get_scores(self, args):
         conn = await r.connect(host=DB_HOST, port=DB_PORT, db=DB_NAME)
         documents = await r.table('scores').run(conn)
+        async for document in documents:
+            self.sendMessage(json_dump(document))
 
+    async def rt_get_users(self, args):
+        conn = await r.connect(host=DB_HOST, port=DB_PORT, db=DB_NAME)
+        documents = await r.table('users').changes(include_initial=True).run(conn)
         async for document in documents:
             self.sendMessage(json_dump(document))
 

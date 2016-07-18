@@ -14,7 +14,7 @@ from rethinkdb import ReqlOpFailedError
 
 conn = r.connect(host='localhost', port=28015, db='ep16').repl()
 
-dates = ['2016-07-14', '2016-07-15', '2016-07-16', '2016-07-17']
+dates = ['2016-07-18', '2016-07-19', '2016-07-20', '2016-07-21', '2016-07-22']
 
 users = [{
     "cool": True,
@@ -123,6 +123,7 @@ def increment_scores():
     user = choice(users)
     date = choice(dates)
     plus = randint(1, 10)
+    print(date)
 
     # q3
     r.table('users').get(user['id']).update({'total_score': (r.row['total_score'] + plus).default(0)}).run(conn)

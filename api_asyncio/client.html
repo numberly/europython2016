@@ -66,7 +66,7 @@
 
          function rt_top_by_day() {
             if (isopen) {
-               socket.send("rt_top_by_day 2016-07-17", true);
+               socket.send("rt_top_by_day 2016-07-18", true);
                // console.log("Text message sent.");
             } else {
                console.log("Connection not opened.")
@@ -85,6 +85,15 @@
          function rt_score(id_user) {
             if (isopen) {
                socket.send("rt_scores " + id_user, true);
+               // console.log("Text message sent.");
+            } else {
+               console.log("Connection not opened.")
+            }
+         };
+
+         function rt_get_users() {
+            if (isopen) {
+               socket.send("rt_get_users", true);
                // console.log("Text message sent.");
             } else {
                console.log("Connection not opened.")
@@ -112,6 +121,7 @@
       <button onclick='rt_score("0853409603dc5025bb80f48011109397");'>RT score for user</button>
       <button onclick='rt_top_by_day();'>RT top by day</button>
       <button onclick='rt_top_overall();'>Best score overall</button>
+      <button onclick='rt_get_users();'>RT users</button>
       <!-- <button onclick='sendBinary();'>Send Binary Message</button> -->
    </body>
 </html>
