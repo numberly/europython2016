@@ -7,6 +7,7 @@ type User struct {
 	ID      string `json:"id"`
 	Name    string `json:"name"`
 	Country string `json:"country"`
+	Image   string `json:"image"`
 }
 
 type rethinkUser struct {
@@ -15,6 +16,7 @@ type rethinkUser struct {
 	ID      string `gorethink:"id"`
 	Name    string `gorethink:"name"`
 	Country string `gorethink:"country"`
+	Image   string `gorethink:"image"`
 }
 
 type responseUser struct {

@@ -77,6 +77,7 @@ func postUsersHandler(res http.ResponseWriter, req *http.Request) {
 	user.Name = jsonUser.Name
 	user.Country = jsonUser.Country
 	user.Cool = jsonUser.Cool
+	user.Image = jsonUser.Image
 	jsonUser.ID = user.ID
 
 	cursor, err := r.Table("users").Insert(user).RunWrite(session)
