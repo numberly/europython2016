@@ -27,7 +27,7 @@ type responseUsers struct {
 
 // Question models
 type Question struct {
-	Index   int      `json:"answer_index"`
+	Index   int      `json:"index"`
 	Answers []string `json:"answers"`
 	ID      int      `json:"id"`
 	Text    string   `json:"text"`
@@ -39,10 +39,10 @@ type checkQuestion struct {
 }
 
 type rethinkQuestion struct {
-	AnswerIndex int      `gorethink:"answer_index"`
-	Answers     []string `gorethink:"answers"`
-	ID          int      `gorethink:"id"`
-	Text        string   `gorethink:"text"`
+	Index   int      `gorethink:"index"`
+	Answers []string `gorethink:"answers"`
+	ID      int      `gorethink:"id"`
+	Text    string   `gorethink:"text"`
 }
 
 type responseQuestions struct {
@@ -70,6 +70,10 @@ type rethinkScore struct {
 	ID         string `gorethink:"id"`
 	IDUser     string `gorethink:"id_user"`
 	TotalScore int    `gorethink:"total_score"`
+}
+
+type responseScore struct {
+	Score Score `json:"data"`
 }
 
 // Other models

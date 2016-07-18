@@ -82,16 +82,17 @@ func postQuestionHandler(res http.ResponseWriter, req *http.Request) {
 
 	var answer responseValidQuestion
 	answer.Data = false
+	fmt.Printf("%v %v", question.Index, jsonQuestion.AnswerIndex)
 	if question.Index == jsonQuestion.AnswerIndex {
 		answer.Data = true
 		currentTime := time.Now().Local()
 		var score rethinkScore
-		var IDScore = fmt.Sprintf("%v_%v", currentTime.Format("2000-01-01"), IDUser)
+		var IDScore = fmt.Sprintf("%v_%v", currentTime.Format("2006-01-02"), IDUser)
 
 		cursorScore, err := r.Table("scores").Get(IDScore).Run(session)
 		err = cursorScore.One(&score)
 		if err == r.ErrEmptyResult {
-			score.Date = currentTime
+			score.Date = currentTime.Format("2006-01-02")
 			score.ID = IDScore
 			score.IDUser = IDUser
 			score.TotalScore = 1

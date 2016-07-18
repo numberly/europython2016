@@ -69,6 +69,7 @@ func main() {
 	r.HandleFunc("/api/users", getUsersHandler).Methods("GET", "OPTIONS")
 	r.HandleFunc("/api/users", postUsersHandler).Methods("POST")
 	r.HandleFunc("/api/user/{id}", getUserHandler).Methods("GET")
+	r.HandleFunc("/api/user/{id}/score", getScoreHandler).Methods("GET")
 
 	r.HandleFunc("/api/questions", getQuestionsHandler).Methods("GET")
 	r.HandleFunc("/api/question/{id}", postQuestionHandler).Methods("POST")

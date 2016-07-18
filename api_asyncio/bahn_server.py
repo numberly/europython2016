@@ -67,8 +67,7 @@ class ScoresProtocol(WebSocketServerProtocol):
 
     async def get_scores(self, args):
         conn = await r.connect(host=DB_HOST, port=DB_PORT, db=DB_NAME)
-        id_user = args[0]
-        documents = await r.table('scores').filter({'id_user': id_user}).run(conn)
+        documents = await r.table('scores').run(conn)
 
         async for document in documents:
             self.sendMessage(json_dump(document))
