@@ -6,6 +6,7 @@ import (
 	"github.com/gorilla/mux"
 	r "gopkg.in/dancannon/gorethink.v2"
 	"net/http"
+	"strings"
 )
 
 // getUsersHandler retrieves all user from rethinkdb
@@ -82,8 +83,15 @@ func postUsersHandler(res http.ResponseWriter, req *http.Request) {
 
 	cursor, err := r.Table("users").Insert(user).RunWrite(session)
 	if err != nil {
-		genericError(err.Error(), res)
-		return
+		// Quick FIX
+		// NOTE: ugly way to manage already register users
+		// query rethinkdb instead of
+		if strings.Contains(err.Error(), "Duplicate") {
+			fmt.Printf("i know you my friend!\n")
+		} else {
+			genericError(err.Error(), res)
+			return
+		}
 	}
 	fmt.Printf("%d row inserted :: %v\n", cursor.Inserted, user.ID)
 
