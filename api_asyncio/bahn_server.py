@@ -79,14 +79,14 @@ class ScoresProtocol(WebSocketServerProtocol):
 
     async def rt_top_overall(self, args):
         conn = await r.connect(host=DB_HOST, port=DB_PORT, db=DB_NAME)
-        documents = await r.table('scores').order_by(index=r.desc('total_score')).limit(10).changes(include_initial=True, include_offsets=True).run(conn)
+        documents = await r.table('scores').order_by(index=r.desc('total_score')).limit(1000).changes(include_initial=True, include_offsets=True).run(conn)
         async for document in documents:
             self.sendMessage(json_dump(document))
 
     async def rt_top_by_day(self, args):
         conn = await r.connect(host=DB_HOST, port=DB_PORT, db=DB_NAME)
         date = args[0]
-        documents = await r.table('scores').order_by(index=r.desc('date_score_user')).filter({'date': date}).limit(10).changes(include_initial=True, include_offsets=True).run(conn)
+        documents = await r.table('scores').order_by(index=r.desc('date_score_user')).filter({'date': date}).limit(1000).changes(include_initial=True, include_offsets=True).run(conn)
         async for document in documents:
             self.sendMessage(json_dump(document))
 
