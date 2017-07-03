@@ -94,6 +94,13 @@ func (a *App) createUser(w http.ResponseWriter, r *http.Request) {
 	}
 	defer r.Body.Close()
 
+	hash, err := MD5FromString(u.Email)
+	if err != nil {
+		respondWithError(w, http.StatusBadRequest, err.Error())
+		return
+	}
+	u.ID = hash
+
 	if err := u.createUser(a.RethinkSession); err != nil {
 		respondWithError(w, http.StatusInternalServerError, err.Error())
 		return
@@ -103,8 +110,28 @@ func (a *App) createUser(w http.ResponseWriter, r *http.Request) {
 }
 
 func (a *App) getUser(w http.ResponseWriter, r *http.Request) {
-	respondWithJSON(w, http.StatusOK, nil)
+	vars := mux.Vars(r)
+
+	hash, err := MD5FromString(vars["id"])
+	if err != nil {
+		respondWithError(w, http.StatusBadRequest, "Invalid user ID")
+		return
+	}
+
+	u := User{ID: hash}
+	if err := u.getUser(a.RethinkSession); err != nil {
+		switch err {
+		case rethink.ErrEmptyResult:
+			respondWithError(w, http.StatusNotFound, "Product not found")
+		default:
+			respondWithError(w, http.StatusInternalServerError, err.Error())
+		}
+		return
+	}
+
+	respondWithJSON(w, http.StatusOK, u)
 }
+
 func (a *App) getScore(w http.ResponseWriter, r *http.Request) {
 	respondWithJSON(w, http.StatusOK, nil)
 }

@@ -1,21 +1,25 @@
 package main
 
 import (
-	"errors"
-
 	rethink "gopkg.in/gorethink/gorethink.v3"
 )
 
 type User struct {
+	ID      string `json:"id" gorethink:"id"`
 	Cool    bool   `json:"cool" gorethink:"cool"`
 	Email   string `json:"email" gorethink:"email"`
 	Name    string `json:"name" gorethink:"name"`
 	Country string `json:"country" gorethink:"country"`
 }
 
-func (u *User) getUser() error {
-	return errors.New("Not implementend")
+func (u *User) getUser(session *rethink.Session) error {
+	_, err := rethink.Table("users").Get(u.ID).Run(session)
+	if err != nil {
+		return err
+	}
+	return nil
 }
+
 func (u *User) createUser(session *rethink.Session) error {
 	_, err := rethink.Table("users").Insert(u).RunWrite(session)
 	if err != nil {
