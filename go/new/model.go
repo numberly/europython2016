@@ -37,12 +37,22 @@ func getUsers(cursor *rethink.Cursor) ([]User, error) {
 	return users, nil
 }
 
-//type Question struct {
-//	Index   int      `json:"index" gorethink:"index"`
-//	Answers []string `json:"answers" gorethink:"answers`
-//	ID      int      `json:"id" gorethink:"id"`
-//	Text    string   `json:"text" gorethink:"text"`
-//}
+type Question struct {
+	AnswerIndex int      `json:"answer_index" gorethink:"answer_index"`
+	Answers     []string `json:"answers" gorethink:"answers`
+	ID          int      `json:"id" gorethink:"id"`
+	Text        string   `json:"text" gorethink:"text"`
+}
+
+func getQuestions(cursor *rethink.Cursor) ([]Question, error) {
+	questions := []Question{}
+	err := cursor.All(&questions)
+	if err != nil {
+		return questions, err
+	}
+	return questions, nil
+}
+
 //
 //type checkQuestion struct {
 //	AnswerIndex int    `json:"answer_index"`

@@ -54,6 +54,11 @@ func (a *App) InitializeDb(session *rethink.Session, database string) {
 	if err != nil {
 		log.Print(err.Error())
 	}
+
+	_, err = rethink.TableCreate("questions").RunWrite(session)
+	if err != nil {
+		log.Print(err.Error())
+	}
 }
 
 func (a *App) InitializeRoutes() {
@@ -137,7 +142,14 @@ func (a *App) getScore(w http.ResponseWriter, r *http.Request) {
 }
 
 func (a *App) getQuestions(w http.ResponseWriter, r *http.Request) {
-	respondWithJSON(w, http.StatusOK, nil)
+	cursor, err := rethink.Table("questions").Run(a.RethinkSession)
+	if err != nil {
+		respondWithError(w, http.StatusInternalServerError, err.Error())
+		return
+	}
+	questions, err := getQuestions(cursor)
+
+	respondWithJSON(w, http.StatusOK, questions)
 }
 
 func (a *App) postQuestionHandler(w http.ResponseWriter, r *http.Request) {
