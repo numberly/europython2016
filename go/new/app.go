@@ -74,8 +74,10 @@ func (a *App) InitializeRoutes() {
 }
 
 func (a *App) Run(addr string) {
-	cors := handlers.AllowedOrigins([]string{"*"})
-	log.Fatal(http.ListenAndServe(":8888", handlers.CORS(cors)(a.Router)))
+	origins := handlers.AllowedOrigins([]string{"*"})
+	headers := handlers.AllowedHeaders([]string{"X-Requested-With", "content-type"})
+	methods := handlers.AllowedMethods([]string{"GET", "DELETE", "HEAD", "POST", "PUT", "OPTIONS"})
+	log.Fatal(http.ListenAndServe(":8888", handlers.CORS(headers, origins, methods)(a.Router)))
 }
 
 func (a *App) getUsers(w http.ResponseWriter, r *http.Request) {
