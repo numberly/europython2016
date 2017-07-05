@@ -6,7 +6,7 @@ import (
 
 type Score struct {
 	Date string `json:"date" gorethink:"date"`
-	Hit  int    `json:"total_score gorethink:"total_score"`
+	Hit  int    `json:"total_score" gorethink:"total_score"`
 }
 
 type User struct {
@@ -53,7 +53,7 @@ func getUsers(cursor *rethink.Cursor) ([]User, error) {
 
 type Question struct {
 	AnswerIndex int      `json:"answer_index" gorethink:"answer_index"`
-	Answers     []string `json:"answers" gorethink:"answers`
+	Answers     []string `json:"answers" gorethink:"answers"`
 	ID          int      `json:"id" gorethink:"id"`
 	Text        string   `json:"text" gorethink:"text"`
 }
