@@ -116,14 +116,7 @@ func (a *App) createUser(w http.ResponseWriter, r *http.Request) {
 
 func (a *App) getUser(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
-
-	hash, err := MD5FromString(vars["id"])
-	if err != nil {
-		respondWithError(w, http.StatusBadRequest, "Invalid user ID")
-		return
-	}
-
-	u := User{ID: hash}
+	u := User{ID: vars["id"]}
 	if err := u.getUser(a.RethinkSession); err != nil {
 		switch err {
 		case rethink.ErrEmptyResult:

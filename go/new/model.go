@@ -4,27 +4,41 @@ import (
 	rethink "gopkg.in/gorethink/gorethink.v3"
 )
 
+type Score struct {
+	Date string `json:"date" gorethink:"date"`
+	Hit  int    `json:"total_score gorethink:"total_score"`
+}
+
 type User struct {
 	ID      string `json:"id" gorethink:"id"`
 	Cool    bool   `json:"cool" gorethink:"cool"`
 	Email   string `json:"email" gorethink:"email"`
 	Name    string `json:"name" gorethink:"name"`
 	Country string `json:"country" gorethink:"country"`
+	Scores  []Score
 }
 
 func (u *User) getUser(session *rethink.Session) error {
-	_, err := rethink.Table("users").Get(u.ID).Run(session)
+	res, err := rethink.Table("users").Get(u.ID).Run(session)
 	if err != nil {
 		return err
 	}
+
+	err = res.One(&u)
+	if err == rethink.ErrEmptyResult {
+		return err
+	}
+
 	return nil
 }
 
 func (u *User) createUser(session *rethink.Session) error {
 	_, err := rethink.Table("users").Insert(u).RunWrite(session)
+
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -59,9 +73,3 @@ func getQuestions(cursor *rethink.Cursor) ([]Question, error) {
 //	IDUser      string `json:"id_user"`
 //}
 //
-//type Score struct {
-//	Date       string `json:"date" gorethink:"date"`
-//	ID         string `json:"id" gorethink:"id"`
-//	IDUser     string `json:"id_user" gorethink:"id_user"`
-//	TotalScore int    `json:"total_score gorethink:"total_score"`
-//}
