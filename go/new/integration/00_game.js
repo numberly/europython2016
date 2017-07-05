@@ -77,7 +77,7 @@ describe('Game scenario', () => {
   describe('Get user score', () => {
     it ("200: user should exist", (done) => {
      request
-      .get(URI + '/users/' + md5('email@email.qwe'))
+      .get(URI + '/users/' + md5('email@email.qwe') + '/score')
       .set('Content-Type', 'application/json')
       .send({})
       .end((err, res) => {
