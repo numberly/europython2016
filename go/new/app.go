@@ -2,8 +2,10 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
+	"strconv"
 
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
@@ -69,7 +71,7 @@ func (a *App) InitializeRoutes() {
 	a.Router.HandleFunc("/api/users/{id}/score", a.getScore).Methods("GET")
 
 	a.Router.HandleFunc("/api/questions", a.getQuestions).Methods("GET")
-	a.Router.HandleFunc("/api/questions/{id}", a.postQuestionHandler).Methods("POST")
+	a.Router.HandleFunc("/api/questions/{id}", a.validateQuestion).Methods("POST")
 
 }
 
@@ -122,7 +124,7 @@ func (a *App) getUser(w http.ResponseWriter, r *http.Request) {
 	if err := u.getUser(a.RethinkSession); err != nil {
 		switch err {
 		case rethink.ErrEmptyResult:
-			respondWithError(w, http.StatusNotFound, "Product not found")
+			respondWithError(w, http.StatusNotFound, "User not found")
 		default:
 			respondWithError(w, http.StatusInternalServerError, err.Error())
 		}
@@ -147,6 +149,50 @@ func (a *App) getQuestions(w http.ResponseWriter, r *http.Request) {
 	respondWithJSON(w, http.StatusOK, questions)
 }
 
-func (a *App) postQuestionHandler(w http.ResponseWriter, r *http.Request) {
-	respondWithJSON(w, http.StatusOK, nil)
+func (a *App) validateQuestion(w http.ResponseWriter, r *http.Request) {
+	var v validateQuestion
+	decoder := json.NewDecoder(r.Body)
+	if err := decoder.Decode(&v); err != nil {
+		respondWithError(w, http.StatusBadRequest, err.Error())
+		return
+	}
+	defer r.Body.Close()
+
+	// retrieve question
+	vars := mux.Vars(r)
+	questionID, err := strconv.Atoi(vars["id"])
+	if err != nil {
+		respondWithError(w, http.StatusInternalServerError, "invalid question id")
+		return
+	}
+	q := Question{ID: questionID}
+
+	if err := q.getQuestion(a.RethinkSession); err != nil {
+		switch err {
+		case rethink.ErrEmptyResult:
+			respondWithError(w, http.StatusNotFound, "Question not found")
+		default:
+			respondWithError(w, http.StatusInternalServerError, err.Error())
+		}
+		return
+	}
+
+	// retrieve user
+	u := User{ID: v.UserID}
+	if err := u.getUser(a.RethinkSession); err != nil {
+		switch err {
+		case rethink.ErrEmptyResult:
+			respondWithError(w, http.StatusNotFound, "User not found")
+		default:
+			respondWithError(w, http.StatusInternalServerError, err.Error())
+		}
+		return
+	}
+
+	fmt.Printf("%v %v\n", q.AnswerIndex, v.Answer)
+	if q.AnswerIndex == v.Answer {
+		u.hitScore(a.RethinkSession)
+	}
+
+	respondWithJSON(w, http.StatusOK, u)
 }
