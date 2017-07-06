@@ -68,10 +68,10 @@ func getUsers(cursor *rethink.Cursor) ([]User, error) {
 }
 
 type Question struct {
-	AnswerIndex int      `json:"answer_index" gorethink:"answer_index"`
-	Answers     []string `json:"answers" gorethink:"answers"`
-	ID          int      `json:"id" gorethink:"id"`
-	Text        string   `json:"text" gorethink:"text"`
+	Index   int      `json:"index" gorethink:"index"` // AnswerIndex
+	Answers []string `json:"answers" gorethink:"answers"`
+	ID      int      `json:"id" gorethink:"id"`
+	Text    string   `json:"text" gorethink:"text"`
 }
 
 type validateQuestion struct {

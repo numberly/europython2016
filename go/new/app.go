@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 	"strconv"
@@ -189,8 +188,7 @@ func (a *App) validateQuestion(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Printf("%v %v\n", q.AnswerIndex, v.Answer)
-	if q.AnswerIndex == v.Answer {
+	if q.Index == v.Answer {
 		u.hitScore(a.RethinkSession)
 	}
 
