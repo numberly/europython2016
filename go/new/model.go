@@ -2,8 +2,9 @@ package main
 
 import (
 	//"fmt"
-	rethink "gopkg.in/gorethink/gorethink.v3"
 	"time"
+
+	rethink "gopkg.in/gorethink/gorethink.v3"
 )
 
 type User struct {
@@ -65,6 +66,18 @@ func getUsers(cursor *rethink.Cursor) ([]User, error) {
 		return users, err
 	}
 	return users, nil
+}
+
+func GetTopUsers(session *rethink.Session, date string, limit int) ([]User, error) {
+	users := []User{}
+	query, err := rethink.Table("users").OrderBy(rethink.Desc(func(row rethink.Term) rethink.Term {
+		return row.Field("scores").Field(date)
+	})).Run(session)
+
+	if err != nil {
+		err = query.All(&users)
+	}
+	return users, err
 }
 
 type Question struct {

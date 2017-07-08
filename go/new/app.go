@@ -79,6 +79,8 @@ func (a *App) InitializeRoutes() {
 
 	a.Router.HandleFunc("/api/questions", a.getQuestions).Methods("GET")
 	a.Router.HandleFunc("/api/questions/{id}", a.validateQuestion).Methods("POST")
+
+	a.Router.HandleFunc("/api/scores/{date}", a.getTopUsers).Methods("GET")
 	a.Router.HandleFunc("/ws", a.Change)
 }
 
@@ -97,6 +99,11 @@ func (a *App) getUsers(w http.ResponseWriter, r *http.Request) {
 	}
 	users, err := getUsers(cursor)
 
+	respondWithJSON(w, http.StatusOK, users)
+}
+
+func (a *App) getTopUsers(w http.ResponseWriter, r *http.Request) {
+	users, _ := GetTopUsers(a.RethinkSession, mux.Vars(r)["date"], 5)
 	respondWithJSON(w, http.StatusOK, users)
 }
 
