@@ -11,9 +11,11 @@ import (
 	rethink "gopkg.in/gorethink/gorethink.v3"
 )
 
+// App TODO
 type App struct {
 	Router         *mux.Router
 	RethinkSession *rethink.Session
+	Hub            *Hub
 }
 
 func respondWithError(w http.ResponseWriter, code int, message string) {
@@ -28,6 +30,7 @@ func respondWithJSON(w http.ResponseWriter, code int, payload interface{}) {
 	w.Write(response)
 }
 
+// Initialize TODO
 func (a *App) Initialize(address, username, password, database string) {
 	var err error
 
@@ -45,6 +48,7 @@ func (a *App) Initialize(address, username, password, database string) {
 	a.InitializeDb(a.RethinkSession, database)
 }
 
+// InitializeDb TODO
 func (a *App) InitializeDb(session *rethink.Session, database string) {
 	_, err := rethink.DBCreate(database).RunWrite(session)
 	if err != nil {
@@ -62,7 +66,11 @@ func (a *App) InitializeDb(session *rethink.Session, database string) {
 	}
 }
 
+// InitializeRoutes TODO
 func (a *App) InitializeRoutes() {
+	a.Hub = newHub()
+	go a.Hub.run()
+
 	a.Router.HandleFunc("/api/users", a.getUsers).Methods("GET", "OPTIONS")
 	a.Router.HandleFunc("/api/users", a.createUser).Methods("POST")
 
@@ -71,7 +79,7 @@ func (a *App) InitializeRoutes() {
 
 	a.Router.HandleFunc("/api/questions", a.getQuestions).Methods("GET")
 	a.Router.HandleFunc("/api/questions/{id}", a.validateQuestion).Methods("POST")
-
+	a.Router.HandleFunc("/ws", a.Change)
 }
 
 func (a *App) Run(addr string) {
@@ -193,4 +201,8 @@ func (a *App) validateQuestion(w http.ResponseWriter, r *http.Request) {
 	}
 
 	respondWithJSON(w, http.StatusOK, u)
+}
+
+func (a *App) Change(w http.ResponseWriter, r *http.Request) {
+	serveWs(a.Hub, w, r)
 }
